@@ -1,0 +1,53 @@
+{
+    "name": "reeller",
+    "version": "0.0.1",
+    "description": "A powerful, flexible and modern library for creating the running text effect, also known as marquee or ticker.",
+    "keywords": [
+        "marquee",
+        "ticker",
+        "reel",
+        "running text",
+        "scrolling text",
+        "clones",
+        "scroll",
+        "filler",
+        "animation",
+        "ui",
+        "library",
+        "microlibrary",
+        "magic",
+        "css",
+        "effects",
+        "gsap"
+    ],
+    "homepage": "https://github.com/Cuberto/reller",
+    "bugs": "https://github.com/Cuberto/reller/issues",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Cuberto/reller.git"
+    },
+    "license": "MIT",
+    "main": "./dist/index.js",
+    "unpkg": "./dist/index.umd.js",
+    "module": "./dist/index.module.js",
+    "source": "./src/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist/",
+        "src/"
+    ],
+    "scripts": {
+        "build": "microbundle -f esm,cjs,umd --name Reeller --compress false --sourcemap false --generateTypes true && microbundle -f umd --name Reeller -o dist/reeller.min.js --no-pkg-main --generateTypes false",
+        "dev": "microbundle -f esm,cjs,umd --name Reeller --compress false --sourcemap false --generateTypes true --watch",
+        "lint": "eslint .",
+        "prepare": "husky install",
+        "prettier": "prettier --check ."
+    },
+    "devDependencies": {
+        "eslint": "^8.21.0",
+        "husky": "^8.0.0",
+        "lint-staged": "^13.0.3",
+        "microbundle": "^0.15.0",
+        "prettier": "^2.7.1"
+    }
+}
