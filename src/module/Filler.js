@@ -165,7 +165,7 @@ export default class Filler extends Base {
     refresh(update = true) {
         this.removeClones();
         this.item = Array.from(this.container.querySelectorAll(this.options.itemSelector));
-        this.clonesData = {};
+        this.calcData = {};
         this.clonesCount = 0;
         this.trigger('refresh');
         if (update) this.update();
