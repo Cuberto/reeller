@@ -121,6 +121,8 @@ export default class Reeller extends Base {
             },
         });
 
+        this.gsap.set(this.filler.container, {overflow: 'hidden'});
+
         this.tl.fromTo(
             this.filler.wrapper,
             {
@@ -247,7 +249,10 @@ export default class Reeller extends Base {
         if (this.options.plugins) this.destroyPlugins();
         this.tl.kill();
         this.filler.destroy(removeClones);
-        if (clearProps) this.gsap.set(this.filler.wrapper, {clearProps: 'x,willChange'});
+        if (clearProps) {
+            this.gsap.set(this.filler.container, {clearProps: 'overflow'});
+            this.gsap.set(this.filler.wrapper, {clearProps: 'x,willChange'});
+        }
         this.trigger('destroy');
     }
 }
