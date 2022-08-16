@@ -1,7 +1,7 @@
 # Cuberto Reeller
 
 <a href="https://www.npmjs.com/package/reeller"><img src="https://img.shields.io/npm/v/reeller?color=red" alt="NPM Version"></a>
-<a href="LICENCE"><img src="https://img.shields.io/github/license/Cuberto/reeller?color=orange" alt="Licence"></a>
+<a href="https://github.com/Cuberto/reeller/blob/dev/LICENSE"><img src="https://img.shields.io/github/license/Cuberto/reeller?color=orange&v=2" alt="Licence"></a>
 <img src="https://img.shields.io/bundlephobia/min/reeller?color=green" alt="Bundle file size">
 <img src="https://img.shields.io/bundlephobia/minzip/reeller?color=yellow&label=gzip%20size" alt="Bundle file size (gzip)">
 <a href="https://npmcharts.com/compare/reeller?minimal=true"><img src="https://img.shields.io/npm/dm/reeller?color=blue" alt="NPM Downloads"></a>
@@ -311,4 +311,4 @@ const filler = new Filler({
 
 ## License
 
-[The MIT License (MIT)](LICENSE)
+[The MIT License (MIT)](https://github.com/Cuberto/reeller/blob/dev/LICENSE)
