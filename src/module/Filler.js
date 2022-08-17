@@ -48,6 +48,8 @@ export default class Filler extends Base {
                 ? this.container.querySelector(this.options.wrapper)
                 : this.options.wrapper || this.options.container;
 
+        /** @type Array.<HTMLElement> **/
+        this.item = [];
         this.refresh(false);
 
         if (this.options.autoUpdate) {
@@ -125,7 +127,8 @@ export default class Filler extends Base {
 
         this.item.map((el) => {
             const rect = el.getBoundingClientRect();
-            const width = rect.width;
+            const style = window.getComputedStyle(el);
+            const width = rect.width + parseInt(style.marginLeft) + parseInt(style.marginRight);
             data.itemWidth.push(width);
             data.itemsWidth += width;
         });
