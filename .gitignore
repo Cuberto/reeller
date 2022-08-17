@@ -10,7 +10,7 @@ Desktop.ini
 Thumbs.db
 ehthumbs.db
 
-# IDEs
+# IDE
 nbproject/
 .idea
 *.iml
@@ -18,12 +18,9 @@ nbproject/
 *.sublime-project
 *.sublime-workspace
 
-# ENVs
-node_modules
-bower_components
-.env
-
 # Project
-/dist/
+node_modules
+.env
+dist/
+build/
 /tmp/
-package-lock.json

@@ -27,6 +27,7 @@
         "url": "git+https://github.com/Cuberto/reller.git"
     },
     "license": "MIT",
+    "author": "Cuberto <info@cuberto.com> (https://cuberto.com/)",
     "main": "./dist/index.js",
     "unpkg": "./dist/index.umd.js",
     "module": "./dist/index.module.js",
@@ -40,8 +41,17 @@
         "build": "microbundle -f esm,cjs,umd --name Reeller --compress false --sourcemap false --generateTypes true && microbundle -f umd --name Reeller -o dist/reeller.min.js --no-pkg-main --generateTypes false",
         "dev": "microbundle -f esm,cjs,umd --name Reeller --compress false --sourcemap false --generateTypes true --watch",
         "lint": "eslint .",
+        "lint-stagged": "lint-staged",
         "prepare": "husky install",
         "prettier": "prettier --check ."
+    },
+    "lint-staged": {
+        "*.js": [
+            "eslint --fix"
+        ],
+        "*.{js,ts,json,scss,css,html,md}": [
+            "prettier --write"
+        ]
     },
     "devDependencies": {
         "eslint": "^8.21.0",
