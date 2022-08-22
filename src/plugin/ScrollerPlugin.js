@@ -71,12 +71,6 @@ export default class ScrollerPlugin {
         let reachedEnd = true;
 
         this.tickerFn = () => {
-            if (this.reeller.paused) {
-                this.gsap.killTweensOf(this.tl);
-                this.tl.timeScale(lastDirection * this.options.threshold);
-                return;
-            }
-
             const scrollPos = this.getScrollPos();
             let velocity = scrollPos - lastScrollPos;
 
@@ -86,6 +80,17 @@ export default class ScrollerPlugin {
 
             if (this.options.reversed) {
                 velocity *= -1;
+            }
+
+            if (this.reeller.paused) {
+                lastDirection = Math.sign(velocity);
+                lastScrollPos = scrollPos;
+                if (!reachedEnd) {
+                    this.gsap.killTweensOf(this.tl);
+                    reachedEnd = true;
+                }
+                this.tl.timeScale(lastDirection * this.options.threshold);
+                return;
             }
 
             if (velocity) {
