@@ -14,6 +14,8 @@ The library uses [GSAP](https://greensock.com/gsap/),
 and [ResizeObserver](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) to achieve the best performance
 results.
 
+<img src="https://user-images.githubusercontent.com/11841379/185962914-effd2364-edc2-4575-8089-4fef2a195fa1.gif">
+
 ⚠️
 **Notice: This library is currently in beta.**
 
