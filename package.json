@@ -1,13 +1,15 @@
 {
     "name": "reeller",
     "version": "0.0.4",
-    "description": "A powerful, flexible and modern library for creating the running text effect, also known as marquee or ticker.",
+    "description": "Flexible, powerful and modern library for creating the running horizontal blocks effect, also known as ticker or the «marquee effect».",
     "keywords": [
         "marquee",
         "ticker",
         "reel",
+        "running blocks",
         "running text",
         "scrolling text",
+        "horizontal movement",
         "clones",
         "scroll",
         "filler",

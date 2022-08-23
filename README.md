@@ -7,7 +7,7 @@
 <a href="https://npmcharts.com/compare/reeller?minimal=true"><img src="https://img.shields.io/npm/dm/reeller?color=blue" alt="NPM Downloads"></a>
 <img src="https://img.shields.io/github/workflow/status/Cuberto/reeller/CI" alt="GitHub Workflow Status">
 
-A powerful, flexible and modern library for creating the running text effect, also known as marquee or ticker.
+Flexible, powerful and modern library for creating the running horizontal blocks effect, also known as ticker or the «marquee effect».
 
 The library uses [GSAP](https://greensock.com/gsap/),
 [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
