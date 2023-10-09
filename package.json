@@ -1,6 +1,6 @@
 {
     "name": "reeller",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Flexible, powerful and modern library for creating the running horizontal blocks effect, also known as ticker or the «marquee effect».",
     "keywords": [
         "marquee",
