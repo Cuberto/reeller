@@ -124,6 +124,7 @@ export default class Reeller extends Base {
     createTimeline() {
         this.tl = new this.gsap.timeline({
             paused: this.options.paused,
+            reversed: this.options.reversed,
             repeat: -1,
             yoyo: !this.options.loop,
             onReverseComplete: function () {
@@ -205,12 +206,14 @@ export default class Reeller extends Base {
     }
 
     /**
-     * Reverse moving.
+     * Set reversed moving.
+     *
+     * @param {boolean} [reversed] Is movement reversed?
      */
-    reverse() {
-        this.paused = false;
-        this.tl.reverse();
-        this.trigger('reverse');
+    reverse(reversed = true) {
+        this.tl.reversed(reversed);
+        this.resume();
+        this.trigger('reverse', reversed);
     }
 
     /**

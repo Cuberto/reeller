@@ -128,7 +128,7 @@ const reeller = new Reeller({
 | :----------------------------------- | :------------------------------------------------------------------------------------------------------- |
 | `reeller.resume()`                   | Resumes movement.                                                                                        |
 | `reeller.pause()`                    | Pauses movement.                                                                                         |
-| `reeller.reverse()`                  | Reverse movement.                                                                                        |
+| `reeller.reverse([reversed=true])`   | Set reversed moving.                                                                                     |
 | `reeller.invalidate()`               | Refresh GSAP Timeline.                                                                                   |
 | `reeller.update()`                   | Calculates and sets the number of clones and update movement position.                                   |
 | `reeller.refresh(update=true)`       | Fully refresh and update all clones and position. Use this only after adding or removing original items. |
