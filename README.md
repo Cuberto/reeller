@@ -5,7 +5,7 @@
 <img src="https://img.shields.io/bundlephobia/min/reeller?color=green" alt="Bundle file size">
 <img src="https://img.shields.io/bundlephobia/minzip/reeller?color=yellow&label=gzip%20size" alt="Bundle file size (gzip)">
 <a href="https://npmcharts.com/compare/reeller?minimal=true"><img src="https://img.shields.io/npm/dm/reeller?color=blue" alt="NPM Downloads"></a>
-<img src="https://img.shields.io/github/workflow/status/Cuberto/reeller/CI" alt="GitHub Workflow Status">
+<img src="https://img.shields.io/github/actions/workflow/status/Cuberto/reeller/ci.yml?branch=dev" alt="GitHub Workflow Status">
 
 Flexible, powerful and modern library for creating the running horizontal blocks effect, also known as ticker or the «marquee effect».
 
@@ -64,7 +64,7 @@ Reeller requires GSAP to work. You need to import it above the Reeller if you di
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
 <script src="https://unpkg.com/reeller@0/dist/reeller.min.js"></script>
 <script>
-    var reeller = new Reeller({
+    var reeller = new Reeller.Reeller({
         container: '.my-reel',
         wrapper: '.my-reel-wrap',
         itemSelector: '.my-reel-item',
@@ -72,6 +72,8 @@ Reeller requires GSAP to work. You need to import it above the Reeller if you di
     });
 </script>
 ```
+
+_Note: All modules (Reeller, Filler, ScrollerPlugin) will be imported into `Reeller` namespace when using from CDN, so you must use a prefix._
 
 ## Options
 
