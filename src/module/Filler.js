@@ -126,9 +126,8 @@ export default class Filler extends Base {
         };
 
         this.item.map((el) => {
-            const rect = el.getBoundingClientRect();
             const style = window.getComputedStyle(el);
-            const width = rect.width + parseInt(style.marginLeft) + parseInt(style.marginRight);
+            const width = el.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight);
             data.itemWidth.push(width);
             data.itemsWidth += width;
         });
