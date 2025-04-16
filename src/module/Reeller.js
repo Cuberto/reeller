@@ -1,13 +1,3 @@
-/*!
- * Cuberto Reeller
- * https://github.com/Cuberto/reeller
- * https://cuberto.com/
- *
- * @version 0.0.5
- * @license The MIT License (MIT)
- * @author Cuberto, Artem Dordzhiev (Draft)
- */
-
 import Base from './Base';
 import Filler from './Filler';
 
