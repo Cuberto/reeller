@@ -59,7 +59,7 @@ export default class ScrollerPlugin {
      */
     getScrollPos() {
         if (this.options.scrollProxy) return this.options.scrollProxy();
-        return window.pageYOffset;
+        return window.scrollY;
     }
 
     /**
@@ -69,10 +69,14 @@ export default class ScrollerPlugin {
         let lastScrollPos = this.getScrollPos();
         let lastDirection = 1;
         let reachedEnd = true;
+        let isScrolled = false;
 
         this.tickerFn = () => {
             const scrollPos = this.getScrollPos();
             let velocity = scrollPos - lastScrollPos;
+
+            if (velocity) isScrolled = true;
+            if (!isScrolled) return;
 
             if (!this.options.bothDirection) {
                 velocity = Math.abs(velocity);
