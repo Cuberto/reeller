@@ -73,7 +73,7 @@ Reeller requires GSAP to work. You need to import it above the Reeller if you di
 </script>
 ```
 
-_Note: All modules (Reeller, Filler, ScrollerPlugin) will be imported into `Reeller` namespace when using from CDN, so you must use a prefix._
+_Note: All modules (Reeller, Filler, ScrollerPlugin, DragPlugin) will be imported into `Reeller` namespace when using from CDN, so you must use a prefix._
 
 ## Options
 
@@ -173,7 +173,7 @@ reeller.off('update', myHandler);
 
 Reeller support plugins to extend functionality.
 
-At this moment there is only one plugin that comes with the official package: **ScrollerPlugin**.
+At this moment there are two plugins that come with the official package: **ScrollerPlugin** and **DragPlugin**.
 
 This plugin allows you to attach movement to the scroll:
 
@@ -241,6 +241,46 @@ const reeller = new Reeller({
     },
 });
 ```
+
+DragPlugin adds horizontal drag control with inertia:
+
+```js
+import {Reeller, DragPlugin} from 'reeller';
+import gsap from 'gsap';
+
+Reeller.registerGSAP(gsap);
+Reeller.use(DragPlugin);
+
+const reeller = new Reeller({
+    container: '.my-reel',
+    wrapper: '.my-reel-wrap',
+    itemSelector: '.my-reel-item',
+    speed: 10,
+    plugins: {
+        drag: {
+            speed: 1,
+            multiplier: 1,
+            changeDirection: true,
+            inertiaMultiplier: 0.5,
+        },
+    },
+});
+```
+
+The following options of DragPlugin is available:
+
+| Option               |                Type                 |   Default    | Description                                                               |
+| :------------------- | :---------------------------------: | :----------: | :------------------------------------------------------------------------ |
+| `speed`              |              `number`               |     `1`      | Inertia duration in seconds.                                              |
+| `multiplier`         |              `number`               |     `1`      | Drag movement multiplier.                                                 |
+| `threshold`          |              `number`               |     `50`     | Minimum release velocity in px/s required to start inertia.               |
+| `inertiaMultiplier`  |              `number`               |    `0.5`     | Inertia distance multiplier.                                              |
+| `activationDistance` |              `number`               |     `3`      | Minimum pointer movement in px before drag starts.                        |
+| `maxVelocity`        |              `number`               |    `3000`    | Maximum release velocity in px/s used for inertia calculation.            |
+| `ease`               |              `string`               | `'expo.out'` | Timing function. See [gsap easing](https://greensock.com/docs/v3/Eases).  |
+| `changeDirection`    |              `boolean`              |   `false`    | Change autoplay direction to match the last drag direction after release. |
+| `target`             | `string` \| `HTMLElement` \| `null` |    `null`    | Drag target element or selector. Defaults to the Reeller container.       |
+| `preventDefault`     |              `boolean`              |    `true`    | Prevent default pointer behaviour while dragging.                         |
 
 ## Filler
 
