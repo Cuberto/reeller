@@ -16,9 +16,6 @@ results.
 
 <img src="https://user-images.githubusercontent.com/11841379/185962914-effd2364-edc2-4575-8089-4fef2a195fa1.gif">
 
-⚠️
-**Notice: This library is currently in beta.**
-
 ## Dependencies
 
 GSAP v3 (https://greensock.com/gsap/)
