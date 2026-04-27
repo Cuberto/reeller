@@ -22,11 +22,11 @@
         "effects",
         "gsap"
     ],
-    "homepage": "https://github.com/Cuberto/reller",
-    "bugs": "https://github.com/Cuberto/reller/issues",
+    "homepage": "https://github.com/Cuberto/reeller",
+    "bugs": "https://github.com/Cuberto/reeller/issues",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Cuberto/reller.git"
+        "url": "git+https://github.com/Cuberto/reeller.git"
     },
     "license": "MIT",
     "author": "Cuberto <info@cuberto.com> (https://cuberto.com/)",
