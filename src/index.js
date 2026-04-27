@@ -10,6 +10,7 @@
 
 import Filler from './module/Filler';
 import Reeller from './module/Reeller';
+import DragPlugin from './plugin/DragPlugin';
 import ScrollerPlugin from './plugin/ScrollerPlugin';
 
-export {Reeller as default, Reeller, Filler, ScrollerPlugin};
+export {Reeller as default, Reeller, Filler, DragPlugin, ScrollerPlugin};
