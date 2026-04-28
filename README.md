@@ -108,9 +108,9 @@ const reeller = new Reeller({
 | `ease`           |           `string`            | `'none'` | Timing function. See [gsap easing](https://greensock.com/docs/v3/Eases). |
 | `initialSeek`    |           `number`            |   `10`   | Initial seek of timeline.                                                |
 | `loop`           |           `boolean`           |  `true`  | Loop movement.                                                           |
-| `pause`          |           `boolean`           |  `true`  | Initialize in paused mode.                                               |
+| `paused`         |           `boolean`           |  `true`  | Initialize in paused mode.                                               |
 | `reversed`       |           `boolean`           | `false`  | Reverse mode.                                                            |
-| `autoStop`       |           `boolean`           |  `true`  | Use IntersectionObserver to auto stop movement.                          |
+| `autoPlay`       |           `boolean`           |  `true`  | Use IntersectionObserver to auto play/stop movement.                     |
 | `autoUpdate`     |           `boolean`           |  `true`  | Use ResizeObserver to auto update clones number.                         |
 | `clonesOverflow` |           `boolean`           |  `true`  | Create artificial overflow with clones.                                  |
 | `clonesFinish`   |           `boolean`           | `false`  | Bring the cycle of clones to an end.                                     |
