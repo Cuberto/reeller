@@ -174,8 +174,9 @@ export default class DragPlugin {
         const clampedVelocity = Math.max(-maxVelocity, Math.min(maxVelocity, velocity));
         const distance = clampedVelocity * this.options.speed * this.options.inertiaMultiplier;
 
+        this.restorePlayback();
+
         if (Math.abs(clampedVelocity) < this.options.threshold || !distance) {
-            this.restorePlayback();
             return;
         }
 
@@ -194,7 +195,6 @@ export default class DragPlugin {
             },
             onComplete: () => {
                 this.inertiaTween = null;
-                this.restorePlayback();
             },
         });
     }
