@@ -3,7 +3,7 @@
  * https://github.com/Cuberto/reeller
  * https://cuberto.com/
  *
- * @version 0.1.0
+ * @version 0.1.1
  * @license The MIT License (MIT)
  * @author Cuberto, Artem Dordzhiev (Draft)
  */
