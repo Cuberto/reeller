@@ -14,7 +14,7 @@ export default class Reeller extends Base {
      * @property {boolean} [loop] Loop movement.
      * @property {boolean} [paused] Initialize in paused mode.
      * @property {boolean} [reversed] Reverse mode.
-     * @property {boolean} [autoStop] Use IntersectionObserver to auto stop movement.
+     * @property {boolean} [autoPlay] Use IntersectionObserver to auto play/stop movement.
      * @property {boolean} [autoUpdate] Use ResizeObserver to auto update clones number.
      * @property {boolean} [clonesOverflow] Create artificial overflow with clones.
      * @property {boolean} [clonesFinish] Bring the cycle of clones to an end.
@@ -38,7 +38,7 @@ export default class Reeller extends Base {
         loop: true,
         paused: true,
         reversed: false,
-        autoStop: true,
+        autoPlay: true,
         autoUpdate: true,
         clonesOverflow: true,
         clonesFinish: false,
@@ -68,7 +68,7 @@ export default class Reeller extends Base {
 
         this.createFiller();
         this.createTimeline();
-        if (this.options.autoStop) this.bindIntersectionObserver();
+        if (this.options.autoPlay || this.options.autoStop) this.bindIntersectionObserver();
         if (this.options.plugins) this.initPlugins();
     }
 
