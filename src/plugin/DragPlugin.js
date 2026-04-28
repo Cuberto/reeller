@@ -29,7 +29,7 @@ export default class DragPlugin {
         speed: 1,
         multiplier: 1,
         threshold: 50,
-        inertiaMultiplier: 0.5,
+        inertiaMultiplier: 0.2,
         activationDistance: 3,
         maxVelocity: 3000,
         ease: 'expo.out',

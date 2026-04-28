@@ -172,6 +172,8 @@ Reeller support plugins to extend functionality.
 
 At this moment there are two plugins that come with the official package: **ScrollerPlugin** and **DragPlugin**.
 
+#### ScrollerPlugin
+
 This plugin allows you to attach movement to the scroll:
 
 ```js
@@ -196,7 +198,7 @@ const reeller = new Reeller({
 });
 ```
 
-The following options of ScrollerPlugin is available:
+The following options of `ScrollerPlugin` is available:
 
 | Option          |    Type    |   Default    | Description                                                                           |
 | :-------------- | :--------: | :----------: | :------------------------------------------------------------------------------------ |
@@ -239,7 +241,9 @@ const reeller = new Reeller({
 });
 ```
 
-DragPlugin adds horizontal drag control with inertia:
+#### DragPlugin
+
+`DragPlugin` adds horizontal drag control with inertia:
 
 ```js
 import {Reeller, DragPlugin} from 'reeller';
@@ -258,7 +262,7 @@ const reeller = new Reeller({
             speed: 1,
             multiplier: 1,
             changeDirection: true,
-            inertiaMultiplier: 0.5,
+            inertiaMultiplier: 0.2,
         },
     },
 });
@@ -271,7 +275,7 @@ The following options of DragPlugin is available:
 | `speed`              |              `number`               |     `1`      | Inertia duration in seconds.                                              |
 | `multiplier`         |              `number`               |     `1`      | Drag movement multiplier.                                                 |
 | `threshold`          |              `number`               |     `50`     | Minimum release velocity in px/s required to start inertia.               |
-| `inertiaMultiplier`  |              `number`               |    `0.5`     | Inertia distance multiplier.                                              |
+| `inertiaMultiplier`  |              `number`               |    `0.2`     | Inertia distance multiplier.                                              |
 | `activationDistance` |              `number`               |     `3`      | Minimum pointer movement in px before drag starts.                        |
 | `maxVelocity`        |              `number`               |    `3000`    | Maximum release velocity in px/s used for inertia calculation.            |
 | `ease`               |              `string`               | `'expo.out'` | Timing function. See [gsap easing](https://greensock.com/docs/v3/Eases).  |
