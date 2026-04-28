@@ -140,7 +140,6 @@ export default class DragPlugin {
             this.basePaused = this.reeller.paused;
         }
 
-        this.reeller.paused = true;
         this.tl.pause();
 
         this.samples = [];
@@ -156,10 +155,8 @@ export default class DragPlugin {
         }
 
         if (this.basePaused) {
-            this.reeller.paused = true;
             this.tl.pause();
         } else {
-            this.reeller.paused = false;
             this.tl.resume();
         }
 
@@ -314,10 +311,6 @@ export default class DragPlugin {
      */
     destroy() {
         this.stopInertia();
-
-        if (this.basePaused !== null) {
-            this.restorePlayback();
-        }
 
         if (this.target) {
             this.target.removeEventListener('pointerdown', this.onPointerDown);
