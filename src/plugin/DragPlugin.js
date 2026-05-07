@@ -277,7 +277,10 @@ export default class DragPlugin {
         this.onPointerUp = (event) => {
             if (event.pointerId !== this.pointerId) return;
 
-            if (this.target.releasePointerCapture) {
+            if (
+                this.target.releasePointerCapture &&
+                (!this.target.hasPointerCapture || this.target.hasPointerCapture(event.pointerId))
+            ) {
                 this.target.releasePointerCapture(event.pointerId);
             }
 
@@ -300,10 +303,27 @@ export default class DragPlugin {
             this.startInertia(velocity);
         };
 
+        this.onPointerCancel = (event) => {
+            if (event.pointerId !== this.pointerId) return;
+
+            if (
+                this.target.releasePointerCapture &&
+                (!this.target.hasPointerCapture || this.target.hasPointerCapture(event.pointerId))
+            ) {
+                this.target.releasePointerCapture(event.pointerId);
+            }
+
+            if (this.dragging || this.basePaused !== null) {
+                this.restorePlayback();
+            }
+
+            this.resetPointer();
+        };
+
         this.target.addEventListener('pointerdown', this.onPointerDown);
         this.target.addEventListener('pointermove', this.onPointerMove);
         this.target.addEventListener('pointerup', this.onPointerUp);
-        this.target.addEventListener('pointercancel', this.onPointerUp);
+        this.target.addEventListener('pointercancel', this.onPointerCancel);
     }
 
     /**
@@ -316,7 +336,7 @@ export default class DragPlugin {
             this.target.removeEventListener('pointerdown', this.onPointerDown);
             this.target.removeEventListener('pointermove', this.onPointerMove);
             this.target.removeEventListener('pointerup', this.onPointerUp);
-            this.target.removeEventListener('pointercancel', this.onPointerUp);
+            this.target.removeEventListener('pointercancel', this.onPointerCancel);
         }
 
         this.basePaused = null;
