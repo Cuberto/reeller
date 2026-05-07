@@ -9,6 +9,8 @@ export default class DragPlugin {
      * @property {number} [maxVelocity] Maximum release velocity in px/s.
      * @property {string} [ease] Timing function.
      * @property {boolean} [changeDirection] Change autoplay direction after drag.
+     * @property {'x'|'y'} [axis] Pointer axis used for drag.
+     * @property {boolean} [invertAxis] Invert drag direction on the selected axis.
      * @property {string|HTMLElement|null} [target] Drag target element or selector.
      * @property {boolean} [preventDefault] Prevent default pointer behaviour while dragging.
      */
@@ -34,6 +36,8 @@ export default class DragPlugin {
         maxVelocity: 3000,
         ease: 'expo.out',
         changeDirection: false,
+        axis: 'x',
+        invertAxis: false,
         target: null,
         preventDefault: true,
     };
@@ -74,25 +78,36 @@ export default class DragPlugin {
     /**
      * Move timeline by drag delta.
      *
-     * @param {number} deltaX Horizontal movement delta in pixels.
+     * @param {number} delta Movement delta in pixels.
      */
-    applyDelta(deltaX) {
+    applyDelta(delta) {
         const trackWidth = this.getTrackWidth();
-        if (!trackWidth || !deltaX) return;
+        if (!trackWidth || !delta) return;
 
-        const timeDelta = (deltaX * this.options.multiplier * this.reeller.options.speed) / trackWidth;
+        const timeDelta = (delta * this.options.multiplier * this.reeller.options.speed) / trackWidth;
         this.tl.totalTime(this.tl.totalTime() + timeDelta);
+    }
+
+    /**
+     * Return pointer position for active drag axis.
+     *
+     * @param {PointerEvent} event Pointer event.
+     * @return {number} Pointer position.
+     */
+    getPointerPosition(event) {
+        const position = this.options.axis === 'y' ? event.clientY : event.clientX;
+        return this.options.invertAxis ? -position : position;
     }
 
     /**
      * Save point for release velocity calculation.
      *
-     * @param {number} x Pointer x position.
+     * @param {number} position Pointer position.
      */
-    pushSample(x) {
+    pushSample(position) {
         const time = performance.now();
 
-        this.samples.push({x, time});
+        this.samples.push({position, time});
 
         while (this.samples.length > 5 || time - this.samples[0].time > 120) {
             this.samples.shift();
@@ -112,7 +127,7 @@ export default class DragPlugin {
         const deltaTime = last.time - first.time;
 
         if (!deltaTime) return 0;
-        return ((last.x - first.x) / deltaTime) * 1000;
+        return ((last.position - first.position) / deltaTime) * 1000;
     }
 
     /**
@@ -143,7 +158,7 @@ export default class DragPlugin {
         this.tl.pause();
 
         this.samples = [];
-        this.pushSample(this.lastX);
+        this.pushSample(this.lastPos);
     }
 
     /**
@@ -215,8 +230,8 @@ export default class DragPlugin {
     resetPointer() {
         this.pointerId = null;
         this.dragging = false;
-        this.startX = 0;
-        this.lastX = 0;
+        this.startPos = 0;
+        this.lastPos = 0;
         this.dragDirection = 0;
         this.samples = [];
     }
@@ -243,10 +258,12 @@ export default class DragPlugin {
             if (this.pointerId !== null) return;
             if (event.pointerType === 'mouse' && event.button !== 0) return;
 
+            const position = this.getPointerPosition(event);
+
             this.stopInertia();
             this.pointerId = event.pointerId;
-            this.startX = event.clientX;
-            this.lastX = event.clientX;
+            this.startPos = position;
+            this.lastPos = position;
             this.samples = [];
 
             if (this.target.setPointerCapture) {
@@ -257,21 +274,23 @@ export default class DragPlugin {
         this.onPointerMove = (event) => {
             if (event.pointerId !== this.pointerId) return;
 
+            const position = this.getPointerPosition(event);
+
             if (!this.dragging) {
-                if (Math.abs(event.clientX - this.startX) < this.options.activationDistance) return;
+                if (Math.abs(position - this.startPos) < this.options.activationDistance) return;
                 this.beginDrag();
             }
 
             if (this.options.preventDefault) event.preventDefault();
 
-            const deltaX = event.clientX - this.lastX;
-            this.lastX = event.clientX;
+            const delta = position - this.lastPos;
+            this.lastPos = position;
 
-            if (!deltaX) return;
+            if (!delta) return;
 
-            this.dragDirection = Math.sign(deltaX);
-            this.pushSample(event.clientX);
-            this.applyDelta(deltaX);
+            this.dragDirection = Math.sign(delta);
+            this.pushSample(position);
+            this.applyDelta(delta);
         };
 
         this.onPointerUp = (event) => {
@@ -294,7 +313,7 @@ export default class DragPlugin {
 
             if (this.options.preventDefault) event.preventDefault();
 
-            this.pushSample(event.clientX);
+            this.pushSample(this.getPointerPosition(event));
 
             const velocity = this.getVelocity();
             this.saveDirection(velocity);
