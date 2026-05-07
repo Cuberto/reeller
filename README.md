@@ -261,6 +261,8 @@ const reeller = new Reeller({
         drag: {
             speed: 1,
             multiplier: 1,
+            axis: 'y',
+            invertAxis: true,
             changeDirection: true,
             inertiaMultiplier: 0.2,
         },
@@ -270,18 +272,20 @@ const reeller = new Reeller({
 
 The following options of DragPlugin is available:
 
-| Option               |                Type                 |   Default    | Description                                                               |
-| :------------------- | :---------------------------------: | :----------: | :------------------------------------------------------------------------ |
-| `speed`              |              `number`               |     `1`      | Inertia duration in seconds.                                              |
-| `multiplier`         |              `number`               |     `1`      | Drag movement multiplier.                                                 |
-| `threshold`          |              `number`               |     `50`     | Minimum release velocity in px/s required to start inertia.               |
-| `inertiaMultiplier`  |              `number`               |    `0.2`     | Inertia distance multiplier.                                              |
-| `activationDistance` |              `number`               |     `3`      | Minimum pointer movement in px before drag starts.                        |
-| `maxVelocity`        |              `number`               |    `3000`    | Maximum release velocity in px/s used for inertia calculation.            |
-| `ease`               |              `string`               | `'expo.out'` | Timing function. See [gsap easing](https://greensock.com/docs/v3/Eases).  |
-| `changeDirection`    |              `boolean`              |   `false`    | Change autoplay direction to match the last drag direction after release. |
-| `target`             | `string` \| `HTMLElement` \| `null` |    `null`    | Drag target element or selector. Defaults to the Reeller container.       |
-| `preventDefault`     |              `boolean`              |    `true`    | Prevent default pointer behaviour while dragging.                         |
+| Option               |                Type                 |   Default    | Description                                                                 |
+| :------------------- | :---------------------------------: | :----------: | :-------------------------------------------------------------------------- |
+| `speed`              |              `number`               |     `1`      | Inertia duration in seconds.                                                |
+| `multiplier`         |              `number`               |     `1`      | Drag movement multiplier.                                                   |
+| `threshold`          |              `number`               |     `50`     | Minimum release velocity in px/s required to start inertia.                 |
+| `inertiaMultiplier`  |              `number`               |    `0.2`     | Inertia distance multiplier.                                                |
+| `activationDistance` |              `number`               |     `3`      | Minimum pointer movement in px before drag starts.                          |
+| `maxVelocity`        |              `number`               |    `3000`    | Maximum release velocity in px/s used for inertia calculation.              |
+| `ease`               |              `string`               | `'expo.out'` | Timing function. See [gsap easing](https://greensock.com/docs/v3/Eases).    |
+| `changeDirection`    |              `boolean`              |   `false`    | Change autoplay direction to match the last drag direction after release.   |
+| `axis`               |            `'x' \| 'y'`             |    `'x'`     | Pointer axis used for drag. Set `'y'` when the reel is rotated by `-90deg`. |
+| `invertAxis`         |              `boolean`              |   `false`    | Invert drag direction on the selected axis. Useful with rotated reels.      |
+| `target`             | `string` \| `HTMLElement` \| `null` |    `null`    | Drag target element or selector. Defaults to the Reeller container.         |
+| `preventDefault`     |              `boolean`              |    `true`    | Prevent default pointer behaviour while dragging.                           |
 
 ## Filler
 
