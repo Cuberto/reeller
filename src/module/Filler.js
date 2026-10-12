@@ -81,6 +81,7 @@ export default class Filler extends Base {
         for (let i = 0; i < count; i++) {
             const item = this.item[(offset + i) % this.item.length].cloneNode(true);
             item.classList.add(this.options.cloneClassName);
+            item.setAttribute('aria-hidden', 'true');
             clones.push(item);
         }
 
@@ -110,6 +111,17 @@ export default class Filler extends Base {
     }
 
     /**
+     * Get the horizontal gap between items set on a flex or grid wrapper.
+     *
+     * @return {number} Gap in pixels.
+     */
+    getGap() {
+        const style = window.getComputedStyle(this.wrapper);
+        if (!/flex|grid/.test(style.display)) return 0;
+        return parseFloat(style.columnGap) || 0;
+    }
+
+    /**
      * Get calculated data object.
      *
      * @return {Object} Calculated data.
@@ -120,6 +132,7 @@ export default class Filler extends Base {
             clonesWidth: 0,
             containerWidth: this.container.offsetWidth,
             fullWidth: 0,
+            gap: this.getGap(),
             itemWidth: [],
             itemsWidth: 0,
             lastIndex: 0,
@@ -127,7 +140,7 @@ export default class Filler extends Base {
 
         this.item.map((el) => {
             const style = window.getComputedStyle(el);
-            const width = el.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight);
+            const width = el.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight) + data.gap;
             data.itemWidth.push(width);
             data.itemsWidth += width;
         });

@@ -129,7 +129,8 @@ export default class Reeller extends Base {
             {
                 x: () => {
                     if (!this.options.clonesOverflow) {
-                        return -(this.filler.calcData.fullWidth - this.filler.calcData.containerWidth);
+                        const {fullWidth, gap, containerWidth} = this.filler.calcData;
+                        return -(fullWidth - gap - containerWidth);
                     }
                     return -this.filler.calcData.itemsWidth;
                 },
